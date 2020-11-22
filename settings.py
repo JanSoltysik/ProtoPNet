@@ -1,16 +1,16 @@
-base_architecture = 'vgg19'
-img_size = 224
-prototype_shape = (2000, 128, 1, 1)
-num_classes = 200
+base_architecture = 'resnet18'
+img_size = 56
+prototype_shape = (4, 16, 1, 1)
+num_classes = 2
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
 
 experiment_run = '003'
 
-data_path = './datasets/cub200_cropped/'
-train_dir = data_path + 'train_cropped_augmented/'
-test_dir = data_path + 'test_cropped/'
-train_push_dir = data_path + 'train_cropped/'
+data_path = '/mnt/users/jsoltysik/local/ro/MNIST/'
+train_dir = data_path + 'train_augmented/'
+test_dir = data_path + 'test/'
+train_push_dir = data_path + 'train/'
 train_batch_size = 80
 test_batch_size = 100
 train_push_batch_size = 75
@@ -32,8 +32,8 @@ coefs = {
     'l1': 1e-4,
 }
 
-num_train_epochs = 1000
+num_train_epochs = 20
 num_warm_epochs = 5
 
 push_start = 10
-push_epochs = [i for i in range(num_train_epochs) if i % 10 == 0]
+push_epochs = [i for i in range(num_train_epochs) if i % 5 == 0]

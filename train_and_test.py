@@ -24,7 +24,7 @@ def _train_or_test(model, dataloader, optimizer=None, class_specific=True, use_l
     for i, (image, label) in enumerate(dataloader):
         input = image.cuda()
         target = label.cuda()
-
+        print(i, end='\r')
         # torch.enable_grad() has no effect outside of no_grad()
         grad_req = torch.enable_grad() if is_train else torch.no_grad()
         with grad_req:
@@ -78,7 +78,6 @@ def _train_or_test(model, dataloader, optimizer=None, class_specific=True, use_l
             total_cluster_cost += cluster_cost.item()
             total_separation_cost += separation_cost.item()
             total_avg_separation_cost += avg_separation_cost.item()
-
         # compute gradient and do SGD step
         if is_train:
             if class_specific:
@@ -99,7 +98,6 @@ def _train_or_test(model, dataloader, optimizer=None, class_specific=True, use_l
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
         del input
         del target
         del output
