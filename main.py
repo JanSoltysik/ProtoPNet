@@ -60,6 +60,7 @@ train_dataset = datasets.ImageFolder(
     train_dir,
     transforms.Compose([
         transforms.Resize(size=(img_size, img_size)),
+        # transforms.Grayscale(num_output_channels=1),
         transforms.ToTensor(),
         normalize,
     ]))
@@ -71,6 +72,7 @@ train_push_dataset = datasets.ImageFolder(
     train_push_dir,
     transforms.Compose([
         transforms.Resize(size=(img_size, img_size)),
+        # transforms.Grayscale(num_output_channels=1),
         transforms.ToTensor(),
     ]))
 train_push_loader = torch.utils.data.DataLoader(
@@ -81,6 +83,7 @@ test_dataset = datasets.ImageFolder(
     test_dir,
     transforms.Compose([
         transforms.Resize(size=(img_size, img_size)),
+        # transforms.Grayscale(num_output_channels=1),
         transforms.ToTensor(),
         normalize,
     ]))
@@ -137,6 +140,7 @@ from settings import num_train_epochs, num_warm_epochs, push_start, push_epochs
 # train the model
 log('start training')
 import copy
+
 for epoch in range(num_train_epochs):
     log('epoch: \t{0}'.format(epoch))
 

@@ -24,7 +24,6 @@ def _train_or_test(model, dataloader, optimizer=None, class_specific=True, use_l
     for i, (image, label) in enumerate(dataloader):
         input = image.cuda()
         target = label.cuda()
-        print(i, end='\r')
         # torch.enable_grad() has no effect outside of no_grad()
         grad_req = torch.enable_grad() if is_train else torch.no_grad()
         with grad_req:

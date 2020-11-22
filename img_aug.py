@@ -1,5 +1,6 @@
 import Augmentor
 import os
+from settings import data_path
 
 
 def makedir(path):
@@ -9,7 +10,8 @@ def makedir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
-datasets_root_dir = "/mnt/users/jsoltysik/local/ro/MIL/"
+
+datasets_root_dir = data_path
 dir = datasets_root_dir + 'train/'
 target_dir = datasets_root_dir + 'train_augmented/'
 
@@ -24,27 +26,20 @@ for i in range(len(folders)):
     p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
     p.rotate(probability=1, max_left_rotation=15, max_right_rotation=15)
     # p.flip_left_right(probability=0.5)
-    for i in range(10):
-        p.process()
-    del p
+    # p.flip_left_right(probability=0.5)
+    # for i in range(10):
+    # p.process()
+
     # skew
-    p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
+    # p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
     p.skew(probability=1, magnitude=0.2)  # max 45 degrees
     # p.flip_left_right(probability=0.5)
-    for i in range(10):
-        p.process()
-    del p
+    # for i in range(10):
+    # p.process()
+
     # shear
-    p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
+    # p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
     p.shear(probability=1, max_shear_left=10, max_shear_right=10)
     # p.flip_left_right(probability=0.5)
-    for i in range(10):
-        p.process()
-    del p
-    # random_distortion
-    #p = Augmentor.Pipeline(source_directory=fd, output_directory=tfd)
-    #p.random_distortion(probability=1.0, grid_width=10, grid_height=10, magnitude=5)
-    #p.flip_left_right(probability=0.5)
-    #for i in range(10):
-    #    p.process()
-    #del p
+    # for i in range(10):
+    p.process()

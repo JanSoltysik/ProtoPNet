@@ -54,7 +54,7 @@ def mil_generator():
         os.makedirs(f"{mil_dir}/{target_dir}/1", exist_ok=True)
 
         # generate bags
-        bag_generator(train_data, target_dir)
+        bag_generator(data, target_dir)
 
 
 if __name__ == "__main__":

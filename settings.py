@@ -1,14 +1,14 @@
-base_architecture = 'resnet18'
+base_architecture = 'vgg19'
 img_size = 56
-prototype_shape = (4, 32, 1, 1)
+prototype_shape = (4, 128, 1, 1)
 num_classes = 2
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
 
 experiment_run = '003'
 
-data_path = '/mnt/users/jsoltysik/local/ro/MNIST/'
-train_dir = data_path + 'train_augmented/'
+data_path = '/mnt/users/jsoltysik/local/ro/MIL/'
+train_dir = data_path + 'train/'
 test_dir = data_path + 'test/'
 train_push_dir = data_path + 'train/'
 train_batch_size = 80

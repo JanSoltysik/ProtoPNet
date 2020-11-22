@@ -1,4 +1,5 @@
 import torch.nn as nn
+import torch
 import torch.utils.model_zoo as model_zoo
 
 model_urls = {
@@ -58,11 +59,12 @@ class VGG_features(nn.Module):
 
         self.n_layers = 0
 
-        layers = []
+        self.layers = []
+        # only one channel change
         in_channels = 3
         for v in cfg:
             if v == 'M':
-                layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
+                self.layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
 
                 self.kernel_sizes.append(2)
                 self.strides.append(2)
@@ -71,9 +73,9 @@ class VGG_features(nn.Module):
             else:
                 conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1)
                 if batch_norm:
-                    layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
+                    self.layers += [conv2d, nn.BatchNorm2d(v), nn.ReLU(inplace=True)]
                 else:
-                    layers += [conv2d, nn.ReLU(inplace=True)]
+                    self.layers += [conv2d, nn.ReLU(inplace=True)]
 
                 self.n_layers += 1
 
@@ -83,7 +85,7 @@ class VGG_features(nn.Module):
 
                 in_channels = v
 
-        return nn.Sequential(*layers)
+        return nn.Sequential(*self.layers)
 
     def conv_info(self):
         return self.kernel_sizes, self.strides, self.paddings
@@ -244,6 +246,10 @@ def vgg19_features(pretrained=False, **kwargs):
                 keys_to_remove.add(key)
         for key in keys_to_remove:
             del my_dict[key]
+
+        # only one input channel change
+        # first_key = next(iter(my_dict))
+        # my_dict[first_key] = torch.unsqueeze(my_dict[first_key][:, 0, :], 1)
         model.load_state_dict(my_dict, strict=False)
     return model
 
