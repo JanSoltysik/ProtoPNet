@@ -1,6 +1,6 @@
 base_architecture = 'resnet18'
 img_size = 56
-prototype_shape = (4, 16, 1, 1)
+prototype_shape = (4, 32, 1, 1)
 num_classes = 2
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
@@ -32,8 +32,8 @@ coefs = {
     'l1': 1e-4,
 }
 
-num_train_epochs = 20
-num_warm_epochs = 5
+num_train_epochs = 5
+num_warm_epochs = 1
 
-push_start = 10
-push_epochs = [i for i in range(num_train_epochs) if i % 5 == 0]
+push_start = 1
+push_epochs = [i for i in range(num_train_epochs)]
