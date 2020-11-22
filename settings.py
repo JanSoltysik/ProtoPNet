@@ -1,6 +1,6 @@
 base_architecture = 'vgg19'
 img_size = 56
-prototype_shape = (4, 128, 1, 1)
+prototype_shape = (6, 128, 1, 1)
 num_classes = 2
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
@@ -8,7 +8,7 @@ add_on_layers_type = 'regular'
 experiment_run = '003'
 
 data_path = '/mnt/users/jsoltysik/local/ro/MIL/'
-train_dir = data_path + 'train/'
+train_dir = data_path + 'train_augmented/'
 test_dir = data_path + 'test/'
 train_push_dir = data_path + 'train/'
 train_batch_size = 80
