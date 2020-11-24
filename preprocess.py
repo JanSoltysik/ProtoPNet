@@ -2,7 +2,7 @@ import torch
 from torchvision.transforms import ToTensor, Compose, Grayscale
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
-from settings import train_dir
+from settings import train_dir, test_dir
 
 
 def calculate_mean_and_std():
@@ -18,7 +18,8 @@ def calculate_mean_and_std():
     return data[0].mean().item(), data[0].std().item()
 
 
-mean, std = calculate_mean_and_std()
+mean, std = 0.15810531377792358, 0.31045639514923096
+#calculate_mean_and_std()
 
 
 def preprocess(x, mean, std):
@@ -56,9 +57,10 @@ def undo_preprocess_input_function(x):
 
 
 if __name__ == "__main__":
+    print("##########TEST################")
     # test modified functions
     train_dataset = ImageFolder(
-        train_dir,
+        test_dir,
         transform=Compose([
             # Grayscale(num_output_channels=1),
             ToTensor()

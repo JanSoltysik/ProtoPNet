@@ -17,13 +17,14 @@ import copy
 from helpers import makedir, find_high_activation_crop
 import model
 import push
-import train_and_test as tnt
+import train_and_test as tnllt
 import save
 from log import create_logger
+from settings import prototype_shape
 from preprocess import mean, std, preprocess_input_function, undo_preprocess_input_function
 
 import argparse
-
+"""
 parser = argparse.ArgumentParser()
 parser.add_argument('-gpuid', nargs=1, type=str, default='0')
 parser.add_argument('-modeldir', nargs=1, type=str)
@@ -33,20 +34,22 @@ parser.add_argument('-img', nargs=1, type=str)
 parser.add_argument('-imgclass', nargs=1, type=int, default=-1)
 args = parser.parse_args()
 
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpuid[0]
+print(args)
+"""
+# os.environ['CUDA_VISIBLE_DEVICES'] = args.gpuid[0]
 
 # specify the test image to be analyzed
-test_image_dir = args.imgdir[0] #'./local_analysis/Painted_Bunting_Class15_0081/'
-test_image_name = args.img[0] #'Painted_Bunting_0081_15230.jpg'
-test_image_label = args.imgclass[0] #15
+test_image_dir = "/mnt/users/jsoltysik/local/ro/MIL/test/1"  # args.imgdir[0] #'./local_analysis/Painted_Bunting_Class15_0081/'
+test_image_name = "09998.jpg"  # args.img[0] #'Painted_Bunting_0081_15230.jpg'
+test_image_label = 1 #args.imgclass[0] #15
 
 test_image_path = os.path.join(test_image_dir, test_image_name)
 
 # load the model
 check_test_accu = False
 
-load_model_dir = args.modeldir[0] #'./saved_models/vgg19/003/'
-load_model_name = args.model[0] #'10_18push0.7822.pth'
+load_model_dir = './saved_models/vgg19/003/'  # args.modeldir[0]
+load_model_name = '4_19push0.9941.pth'  # args.model[0] #'10_18push0.7822.pth'
 
 #if load_model_dir[-1] == '/':
 #    model_base_architecture = load_model_dir.split('/')[-3]
@@ -54,12 +57,12 @@ load_model_name = args.model[0] #'10_18push0.7822.pth'
 #else:
 #    model_base_architecture = load_model_dir.split('/')[-2]
 #    experiment_run = load_model_dir.split('/')[-1]
-
+print('START')
 model_base_architecture = load_model_dir.split('/')[2]
 experiment_run = '/'.join(load_model_dir.split('/')[3:])
 
-save_analysis_path = os.path.join(test_image_dir, model_base_architecture,
-                                  experiment_run, load_model_name)
+save_analysis_path = f"./{load_model_name}_analysis"#os.path.join(test_image_dir, model_base_architecture,
+                     #             experiment_run, load_model_name)
 makedir(save_analysis_path)
 
 log, logclose = create_logger(log_filename=os.path.join(save_analysis_path, 'local_analysis.log'))
@@ -177,6 +180,7 @@ preprocess = transforms.Compose([
 ])
 
 img_pil = Image.open(test_image_path)
+img_pil = img_pil.convert('RGB')
 img_tensor = preprocess(img_pil)
 img_variable = Variable(img_tensor.unsqueeze(0))
 
@@ -209,7 +213,7 @@ makedir(os.path.join(save_analysis_path, 'most_activated_prototypes'))
 
 log('Most activated 10 prototypes of this image:')
 array_act, sorted_indices_act = torch.sort(prototype_activations[idx])
-for i in range(1,11):
+for i in range(1,6):
     log('top {0} activated prototype for this image:'.format(i))
     save_prototype(os.path.join(save_analysis_path, 'most_activated_prototypes',
                                 'top-%d_activated_prototype.png' % i),
@@ -270,7 +274,7 @@ for i in range(1,11):
     log('--------------------------------------------------------------')
 
 ##### PROTOTYPES FROM TOP-k CLASSES
-k = 50
+k = 2
 log('Prototypes from top-%d classes:' % k)
 topk_logits, topk_classes = torch.topk(logits[idx], k=k)
 for i,c in enumerate(topk_classes.detach().cpu().numpy()):

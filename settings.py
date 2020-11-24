@@ -5,7 +5,7 @@ num_classes = 2
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
 
-experiment_run = '003'
+experiment_run = '004'
 
 data_path = '/mnt/users/jsoltysik/local/ro/MIL/'
 train_dir = data_path + 'train_augmented/'

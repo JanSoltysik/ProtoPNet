@@ -1,0 +1,167 @@
+load model from ./saved_models/vgg19/003/4_19push0.9941.pth
+model base architecture: vgg19
+experiment run: 003/
+Prototypes are chosen from 2 number of classes.
+Their class identities are: [0 0 0 1 1 1]
+All prototypes connect most strongly to their respective classes.
+0 (1, 1)
+Predicted: 1
+Actual: 1
+Most activated 10 prototypes of this image:
+top 1 activated prototype for this image:
+prototype index: 4
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection with predicted class: 0.1857391744852066
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 2 activated prototype for this image:
+prototype index: 3
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection with predicted class: 0.23016990721225739
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 3 activated prototype for this image:
+prototype index: 5
+prototype class identity: 1
+activation value (similarity score): 9.136824607849121
+last layer connection with predicted class: 0.6169853210449219
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 4 activated prototype for this image:
+prototype index: 0
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection with predicted class: 0.002647202927619219
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 5 activated prototype for this image:
+prototype index: 1
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection with predicted class: 0.1478467434644699
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+Prototypes from top-50 classes:
+load model from ./saved_models/vgg19/003/4_19push0.9941.pth
+model base architecture: vgg19
+experiment run: 003/
+Prototypes are chosen from 2 number of classes.
+Their class identities are: [0 0 0 1 1 1]
+All prototypes connect most strongly to their respective classes.
+0 (1, 1)
+Predicted: 1
+Actual: 1
+Most activated 10 prototypes of this image:
+top 1 activated prototype for this image:
+prototype index: 4
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection with predicted class: 0.1857391744852066
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 2 activated prototype for this image:
+prototype index: 3
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection with predicted class: 0.23016990721225739
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 3 activated prototype for this image:
+prototype index: 5
+prototype class identity: 1
+activation value (similarity score): 9.136824607849121
+last layer connection with predicted class: 0.6169853210449219
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 4 activated prototype for this image:
+prototype index: 0
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection with predicted class: 0.002647202927619219
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+top 5 activated prototype for this image:
+prototype index: 1
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection with predicted class: 0.1478467434644699
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+Prototypes from top-2 classes:
+top 1 predicted class: 1
+logit of the class: 9.470543
+prototype index: 3
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection: 0.23016990721225739
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+prototype index: 4
+prototype class identity: 1
+activation value (similarity score): 9.21034049987793
+last layer connection: 0.1857391744852066
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+prototype index: 5
+prototype class identity: 1
+activation value (similarity score): 9.136824607849121
+last layer connection: 0.6169853210449219
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+***************************************************************
+top 2 predicted class: 0
+logit of the class: 2.367255
+prototype index: 0
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection: 0.5698313117027283
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+prototype index: 1
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection: 0.2482517957687378
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+prototype index: 2
+prototype class identity: 0
+activation value (similarity score): 0.00778143061324954
+last layer connection: 0.20864367485046387
+most highly activated patch of the chosen image by this prototype:
+most highly activated patch by this prototype shown in the original image:
+prototype activation map of the chosen image:
+--------------------------------------------------------------
+***************************************************************
+Prediction is correct.
