@@ -7,8 +7,8 @@ from torch.utils.data import Subset
 from torchvision.datasets import MNIST
 
 mnist_dir = "/mnt/users/jsoltysik/local/ro/mnist"
-mil_dir = "/mnt/users/jsoltysik/local/ro/MIL"
-target_label = 9  # target label == 1 if '9' is in the bag
+mil_dir = "/mnt/users/jsoltysik/local/ro/MIL_69"
+target_labels = (6, 9)  # target label == 1 if '9' and '6' is in the bag
 bag_size = 4
 
 
@@ -27,7 +27,7 @@ def concat_pictures(images: Subset) -> Tuple[Image, int]:
 
     # is target_label in the created bag
     _, labels = zip(*images)
-    label = int(target_label in labels)
+    label = int(all(target_label in labels for target_label in target_labels))
 
     return bag, label
 
