@@ -8,7 +8,7 @@ from torchvision.datasets import MNIST
 
 mnist_dir = "/mnt/users/jsoltysik/local/ro/mnist"
 mil_dir = "/mnt/users/jsoltysik/local/ro/MIL_69"
-target_labels = (6, 9)  # target label == 1 if '9' and '6' is in the bag
+target_labels = (9, 6)  # target label == 1 if '9' and '6' is in the bag
 bag_size = 4
 
 

@@ -1,13 +1,13 @@
 base_architecture = 'resnet18_small'
-img_size = 56
-prototype_shape = (6, 56, 4, 4)
-num_classes = 2
+img_size = 28
+prototype_shape = (20, 512, 1, 1)
+num_classes = 10
 prototype_activation_function = 'log'
 add_on_layers_type = 'regular'
 
-experiment_run = '004'
+experiment_run = 'mnist_simclr'
 
-data_path = '/mnt/users/jsoltysik/local/ro/MIL_69/'
+data_path = '/mnt/users/jsoltysik/local/ro/MNIST/'
 train_dir = data_path + 'train/'
 test_dir = data_path + 'test/'
 train_push_dir = data_path + 'train/'
@@ -37,8 +37,8 @@ coefs = {
     'l1': 1e-4,
 }
 
-num_train_epochs = 16
-num_warm_epochs = 1
+num_train_epochs = 31
+num_warm_epochs = 5
 
-push_start = 5
-push_epochs = [i for i in range(num_train_epochs) if i % 5 == 0]
+push_start = 10
+push_epochs = [i for i in range(num_train_epochs) if i % 10 == 0]

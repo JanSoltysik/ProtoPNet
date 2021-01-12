@@ -62,12 +62,17 @@ class VGG_features(nn.Module):
         self.layers = []
         # only one channel change
         in_channels = 3
-        for v in cfg:
+        print('len', len(cfg))
+        for i, v in enumerate(cfg):
+            if i > 5:
+                stride = 1
+            else:
+                stride = 2
             if v == 'M':
-                self.layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
+                self.layers += [nn.MaxPool2d(kernel_size=2, stride=stride)]
 
                 self.kernel_sizes.append(2)
-                self.strides.append(2)
+                self.strides.append(stride)
                 self.paddings.append(0)
 
             else:
@@ -84,6 +89,8 @@ class VGG_features(nn.Module):
                 self.paddings.append(1)
 
                 in_channels = v
+
+        self.layers[-1]
 
         return nn.Sequential(*self.layers)
 

@@ -16,6 +16,7 @@ import model
 import find_nearest
 import train_and_test as tnt
 
+from settings import train_batch_size, test_batch_size
 from preprocess import preprocess_input_function
 
 import argparse
@@ -52,26 +53,46 @@ train_dir = train_push_dir
 batch_size = 100
 
 # train set: do not normalize
-train_dataset = datasets.ImageFolder(
-    train_dir,
-    transforms.Compose([
-        transforms.Resize(size=(img_size, img_size)),
-        transforms.ToTensor(),
-    ]))
-train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=batch_size, shuffle=True,
-    num_workers=4, pin_memory=False)
 
-# test set: do not normalize
-test_dataset = datasets.ImageFolder(
-    test_dir,
-    transforms.Compose([
-        transforms.Resize(size=(img_size, img_size)),
+train_dataset = datasets.MNIST(
+    train_dir,
+    train=True,
+    download=True,
+    transform=transforms.Compose([
         transforms.ToTensor(),
+        transforms.Lambda(lambda x: x.repeat(3, 1, 1)),
+    ]))
+
+train_loader = torch.utils.data.DataLoader(
+    train_dataset, batch_size=train_batch_size, shuffle=True,
+    num_workers=4, pin_memory=False)
+# push set
+train_push_dataset = datasets.MNIST(
+    train_push_dir,
+    train=True,
+    download=True,
+    transform=transforms.Compose([
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Lambda(lambda x: x.repeat(3, 1, 1)),
+    ]))
+
+train_push_loader = torch.utils.data.DataLoader(
+    train_push_dataset, batch_size=train_batch_size, shuffle=False,
+    num_workers=4, pin_memory=False)
+# test set
+test_dataset = datasets.MNIST(
+    test_dir,
+    train=False,
+    download=True,
+    transform=transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Lambda(lambda x: x.repeat(3, 1, 1))
     ]))
 test_loader = torch.utils.data.DataLoader(
-    test_dataset, batch_size=batch_size, shuffle=True,
+    test_dataset, batch_size=test_batch_size, shuffle=False,
     num_workers=4, pin_memory=False)
+
 
 root_dir_for_saving_train_images = os.path.join(load_model_dir,
                                                 load_model_name.split('.pth')[0] + '_nearest_train')
@@ -123,7 +144,7 @@ find_nearest.find_k_nearest_patches_to_prototypes(
         dataloader=train_loader, # pytorch dataloader (must be unnormalized in [0,1])
         prototype_network_parallel=ppnet_multi, # pytorch network with prototype_vectors
         k=k+1,
-        preprocess_input_function=preprocess_input_function, # normalize if needed
+        preprocess_input_function=None, # normalize if needed
         full_save=True,
         root_dir_for_saving_images=root_dir_for_saving_train_images,
         log=print)
@@ -132,7 +153,7 @@ find_nearest.find_k_nearest_patches_to_prototypes(
         dataloader=test_loader, # pytorch dataloader (must be unnormalized in [0,1])
         prototype_network_parallel=ppnet_multi, # pytorch network with prototype_vectors
         k=k,
-        preprocess_input_function=preprocess_input_function, # normalize if needed
+        preprocess_input_function=None, # normalize if needed
         full_save=True,
         root_dir_for_saving_images=root_dir_for_saving_test_images,
         log=print)
